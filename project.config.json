@@ -1,0 +1,14 @@
+{
+  "miniprogramRoot": "client/dist/",
+  "cloudfunctionRoot": "cloudFunctions/",
+  "projectname": "quick-taro-cloud",
+  "description": "A simple demo of wx-mini-application with Taro and Cloud Functions",
+  "appid": "wx43f2cd509c9edb30",
+  "setting": {
+    "urlCheck": true,
+    "es6": false,
+    "postcss": false,
+    "minified": false
+  },
+  "compileType": "miniprogram"
+}
