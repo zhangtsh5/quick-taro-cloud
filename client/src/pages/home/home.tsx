@@ -2,7 +2,7 @@ import Taro from "@tarojs/taro";
 import { Component } from 'react'
 import { View, Text } from "@tarojs/components";
 import Login from '../../components/login/index.weapp'
-
+import { request } from '../../utils/request'
 import "./home.scss";
 
 interface HomePropsType {}
@@ -28,20 +28,13 @@ class Home extends Component<HomePropsType, HomeStateType> {
 
   componentDidHide() {}
 
-
-
-  getTestData = () => {
-    Taro.cloud
-      .callFunction({
-        name: "getTestData",
-        data: {}
+  testRequest = async () => {
+    const res = await request('getTestData', {})
+    if (res) {
+      this.setState({
+        testData: res.data
       })
-      .then(res => {
-        console.log('res----', res.result)
-        this.setState({
-          testData: res.result?.data
-        })
-      })
+    }
   }
 
 
@@ -51,8 +44,8 @@ class Home extends Component<HomePropsType, HomeStateType> {
       <View className="home">
         <Text>首页</Text>
         <Login />
-        <Text onClick={() => this.getTestData()}>点击获取云数据库数据</Text>
         <View>{JSON.stringify(testData)}</View>
+        <View onClick={this.testRequest}>测试封装请求</View>
       </View>
     );
   }
